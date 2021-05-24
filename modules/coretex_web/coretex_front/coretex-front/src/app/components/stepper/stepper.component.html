@@ -1,0 +1,26 @@
+
+<div class="mdl-card mdl-shadow--2dp">
+
+  <div class="mdl-card__supporting-text">
+    <div class="mdl-stepper-horizontal-alternative">
+    <ng-container *ngFor="let step of steps; let i = index;">
+      <div class="mdl-stepper-step active-step"
+           [class.step-done]="i < selectedIndex"
+           [ngClass]="selectedIndex === i ? activeClass : '' " (click)="selectedIndex = i" >
+        <div class="mdl-stepper-circle"><span>{{i+1}}</span></div>
+        <div class="mdl-stepper-title">{{step.label}}</div>
+        <div class="mdl-stepper-bar-left"></div>
+        <div class="mdl-stepper-bar-right"></div>
+      </div>
+    </ng-container>
+    </div>
+
+  </div>
+
+</div>
+<div class="row">
+  <div class="col-12">
+    <h6>{{selected.label}}</h6>
+    <ng-container [ngTemplateOutlet]="selected.content"> </ng-container>
+  </div>
+</div>

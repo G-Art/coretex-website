@@ -1,0 +1,50 @@
+plugins {
+    id "com.github.node-gradle.node" version "2.2.4"
+}
+
+node {
+    // Version of node to download and install (only used if download is true)
+    // It will be unpacked in the workDir
+    version = '12.13.1'
+    // Version of npm to use
+    // If specified, installs it in the npmWorkDir
+    // If empty, the plugin will use the npm command bundled with Node.js
+    npmVersion = '7.9.0'
+    // Whether to download and install a specific Node.js version or not
+    // If false, it will use the globally installed Node.js
+    // If true, it will download node using above parameters
+    // Note that npm is bundled with Node.js
+    download = true
+    // The directory where Node.js is unpacked (when download is true)
+    workDir = project.file("${project.projectDir}/jsbuild/nodejs")
+    // The directory where npm is installed (when a specific version is defined)
+    npmWorkDir = project.file("${project.projectDir}/jsbuild/npm")
+    // The Node.js project directory location
+    // This is where the package.json file and node_modules directory are located
+    // By default it is at the root of the current project
+    nodeModulesDir = project.file("${project.projectDir}/coretex-front")
+}
+repositories.whenObjectAdded {
+    if (it instanceof IvyArtifactRepository) {
+        metadataSources {
+            artifact()
+        }
+    }
+}
+
+build.dependsOn 'npm_run_build'
+
+//task start(type: NpmTask, dependsOn: 'safeInstall') {
+//  args = ['run', 'start']
+//}
+
+
+clean.delete << file('node_modules')
+clean.delete << file('webroot/resources/static/app')
+
+dependencies {
+    implementation project(":core")
+
+    web group: 'org.springframework', name: 'spring-webflux', version: "$v.spring"
+
+}

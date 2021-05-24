@@ -1,0 +1,125 @@
+<div class="row">
+  <div class="col-12">
+    <p>Now time to fix our todo list and first step is modification item in
+      <strong>todoListCore-items.struct</strong> file.
+      We need add boolean attribute to track todo item state
+    </p>
+
+    <div class="row">
+      <div class="col-12">
+        <button type="button" class="btn btn-outline-light"
+                (click)="modifiedStructCollapsed = !modifiedStructCollapsed"
+                [attr.aria-expanded]="!modifiedStructCollapsed" aria-controls="modifiedStruct">Show
+          todoListCore-items.struct
+        </button>
+
+        <div id="modifiedStruct" [collapse]="modifiedStructCollapsed" [isAnimated]="true">
+          <div class="border border-white rounded">
+            <span class="ml-1"><small>Code example:</small></span>
+            <pre>
+              <code [innerHTML]="modifiedStruct"></code>
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-2">
+      After item modification we need modify controller and DTO class to manage todo item state
+      For ToDoNotesController we need add new method that menage state for 'done' field
+      <br/>
+      Also we need to modify the 'read' method and use a query with result ordering that allows us to separate completed items from
+      not accomplish.
+    </p>
+
+    <div class="row">
+      <div class="col-xl-6 col-md-12">
+        <button type="button" class="btn btn-outline-light"
+                (click)="modifiedControllerCollapsed = !modifiedControllerCollapsed"
+                [attr.aria-expanded]="!modifiedControllerCollapsed" aria-controls="modifiedController">Show
+          ToDoNotesController.java
+        </button>
+
+        <div id="modifiedController" [collapse]="modifiedControllerCollapsed" [isAnimated]="true">
+          <div class="border border-white rounded">
+            <span class="ml-1"><small>Code example:</small></span>
+            <pre>
+              <code [innerHTML]="modifiedController"></code>
+            </pre>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-md-12">
+        <button type="button" class="btn btn-outline-light"
+                (click)="modifiedDTOCollapsed = !modifiedDTOCollapsed"
+                [attr.aria-expanded]="!modifiedDTOCollapsed" aria-controls="modifiedDTO">Show
+          ToDoNoteDto.java
+        </button>
+
+        <div id="modifiedDTO" [collapse]="modifiedDTOCollapsed" [isAnimated]="true">
+          <div class="border border-white rounded">
+            <span class="ml-1"><small>Code example:</small></span>
+            <pre>
+              <code [innerHTML]="modifiedDTO"></code>
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-2">
+      Final modifications related to <strong>todo-list.component</strong> and <strong>todo-item.ts</strong>
+      that allow correctly display list item
+    </p>
+
+    <div class="row">
+      <div class="col-xl-6 col-md-12">
+        <button type="button" class="btn btn-outline-light"
+                (click)="toDoListComponentExampleCollapsed = !toDoListComponentExampleCollapsed"
+                [attr.aria-expanded]="!toDoListComponentExampleCollapsed"
+                aria-controls="listExample">Show todo-list component
+        </button>
+
+        <div id="todo-listExample" [collapse]="toDoListComponentExampleCollapsed" [isAnimated]="true">
+          <accordion [closeOthers]="true" [isAnimated]="true">
+            <accordion-group heading="todo-list.component.html">
+              <div class="border border-white rounded">
+                <span class="ml-1"><small>HTML:</small></span>
+                <pre>
+                <code [innerText]="toDoComponentHtmlExample"></code>
+              </pre>
+              </div>
+            </accordion-group>
+            <accordion-group heading="todo-list.component.ts">
+              <div class="border border-white rounded">
+                <span class="ml-1"><small>TypeScript:</small></span>
+                <pre>
+              <code [innerHTML]="toDoComponentTsExample"></code>
+            </pre>
+              </div>
+            </accordion-group>
+          </accordion>
+
+        </div>
+      </div>
+      <div class="col-xl-6 col-md-12">
+        <button type="button" class="btn btn-outline-light"
+                (click)="toDoItemExampleCollapsed = !toDoItemExampleCollapsed"
+                [attr.aria-expanded]="!toDoItemExampleCollapsed" aria-controls="controllerExample1">Show
+          todo-item.ts
+        </button>
+
+        <div id="controllerExample1" [collapse]="toDoItemExampleCollapsed" [isAnimated]="true">
+          <div class="border border-white rounded">
+            <span class="ml-1"><small>Code example:</small></span>
+            <pre>
+              <code [innerHTML]="toDoItemTsExample"></code>
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+

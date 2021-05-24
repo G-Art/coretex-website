@@ -1,0 +1,140 @@
+<div class="row">
+  <div class="col-12">
+
+    <p>Small developer journey will allow you try and meat with main features of CoreTex</p>
+    <p>Before start please use <a routerLink="/start" [queryParams]="{prop : 'setup'}"><b>instruction</b></a> to
+      download and setup CoreTex platform </p>
+
+
+    <p>After installation you can import project as regular gradle project to your favorite IDE</p>
+    <p>Platform has following structure:</p>
+    <pre>
+        sapmle-project
+        |---config
+        |   |-+loger
+        |   |-+ssl
+        |   |-+tomcat
+        |   |--coretex.properties
+        |   |--coretex-test.properties
+        |
+        |---core
+        |   |-+classes
+        |   |-+genSrc
+        |   |-+libs
+        |   |-+resources
+        |   |-+src
+        |   |--build.gradle
+        |
+        |---modules
+        |   |---mc
+        |       |-+classes
+        |       |-+libs
+        |       |-+resources
+        |       |-+src
+        |       |-+webroot
+        |       |--build.gradle
+        |
+        |--+tmp
+        |---build.gradle
+        |---gradle.properties
+        |---gradlew.bat
+        |---settings.gradle
+    </pre>
+
+    <h5>Sample project</h5>
+    <p>
+      Sample project will contain two module one for server side logic and second one for front-end.<br/>
+      All new modules should be inside 'modules' folder,
+      it is good practice but is not necessary because all folders in platform will be scanned during the build.
+    </p>
+
+    <app-stepper>
+      <cdk-step label="Core module creation">
+        <p>
+          New modules might be nested in specific folder inside 'modules'.<br/>
+          Create new folder inside 'modules' and name it '<b>todo_list</b>' it will be folder for our newly generated
+          modules
+        </p>
+        <p>To generate first module dedicated to server side logic just perform command:</p>
+        <div class="d-flex badge bg-light text-dark mb-2 text-wrap">
+          ./gradlew moduleGen -Darchetype=regular_module -DprojectPath=/modules/todolist -DprojectName=todolistcore
+          -DmoduleName=todoListCore -DpackagePath=com/example/project --no-daemon
+        </div>
+        <p>Now in 'modules' bean generated new module with name 'todolistcore'</p>
+
+        <p>
+          Find file <b>todoListCore-items.struct</b> for '<i>todolistcore</i>' and define first Item '<i>ToDoNote</i>' with
+          attributes: <br/>
+          <b>description(String)</b><br/>
+          <b>priority(Integer)</b>
+        </p>
+
+        <button type="button" class="btn btn-outline-light" (click)="isCollapsed1 = !isCollapsed1"
+                [attr.aria-expanded]="!isCollapsed1" aria-controls="structExample1">Show todoListCore-items.struct
+        </button>
+        <div id="structExample1" [collapse]="isCollapsed1" [isAnimated]="true">
+          <div class="border border-white rounded">
+            <span class="ml-1"><small>Code example:</small></span>
+            <pre>
+          <code [innerHTML]="structExample1"></code>
+        </pre>
+          </div>
+        </div>
+
+        <p class="mt-2">After declaration new item you need to perform 'clean build' command to generate required classes
+          and compile project</p>
+        <div class="d-flex badge bg-light text-dark mb-2">
+          ./gradlew clean build --no-daemon
+        </div>
+
+        <p>Create DAO class for newly created Item. This step is not necessary if you create some support item</p>
+
+        <button type="button" class="btn btn-outline-light" (click)="isCollapsed2 = !isCollapsed2"
+                [attr.aria-expanded]="!isCollapsed2" aria-controls="daoExample1">Show ToDoNoteDao.java
+        </button>
+
+        <div id="daoExample1" [collapse]="isCollapsed2" [isAnimated]="true">
+          <div class="border border-white rounded">
+            <span class="ml-1"><small>Code example:</small></span>
+            <pre>
+              <code [innerHTML]="structExample2"></code>
+            </pre>
+          </div>
+        </div>
+      </cdk-step>
+      <cdk-step label="Web module creation">
+        <app-journey-web-module-info></app-journey-web-module-info>
+        <p>As we can see not all functionality is working properly and we doing to fix in <button type="button" class="btn btn-outline-light" cdkStepperNext>next step</button>.</p>
+      </cdk-step>
+      <cdk-step label="Update item">
+        <app-journey-update-item-info></app-journey-update-item-info>
+      </cdk-step>
+      <cdk-step label="Complete">
+        <div class="row">
+          <div class="col-12">
+            <p>
+              To complete our journey we need verify if everything is work as expected,
+              so as you remember we modified struct file and that mean that we need update our system after build.
+              <br/>
+              Following command will complete our journey.
+            </p>
+            <div class="d-flex badge bg-light text-dark mb-2">
+              ./gradlew clean build --no-daemon
+            </div>
+            <div class="d-flex badge bg-light text-dark mb-2">
+              ./gradlew updatesystem --no-daemon
+            </div>
+            <div class="d-flex badge bg-light text-dark mb-2">
+              ./gradlew run --no-daemon
+            </div>
+
+            <p>After running you can proceed to <a target="_blank" href="http://localhost:8008/">http://localhost:8008/</a> and see the result </p>
+            <img src="/cweb/app/assets/img/result.png"/>
+            <p>Enjoy</p>
+          </div>
+        </div>
+      </cdk-step>
+    </app-stepper>
+
+  </div>
+</div>

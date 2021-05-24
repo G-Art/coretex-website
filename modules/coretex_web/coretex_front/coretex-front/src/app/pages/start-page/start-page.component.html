@@ -1,0 +1,16 @@
+<div class="row justify-content-center">
+  <div class="col-sm-11 col-md-2 col-lg-2 pt-5">
+    <app-vertical-nav-bar [listItem]="startNavMenu"></app-vertical-nav-bar>
+  </div>
+  <div class="col-sm-11 col-md-10 col-lg-10 pt-5">
+    <app-info-box>
+      <div class="info-title">
+       <h3>{{startNavMenu.get(infoBlock)}}</h3>
+      </div>
+      <div class="info-text">
+        <ng-template appInfo></ng-template>
+      </div>
+    </app-info-box>
+  </div>
+</div>
+

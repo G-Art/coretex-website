@@ -1,0 +1,112 @@
+<div class="row">
+  <div class="col-12">
+    <p>Build process separated by two parts <b><i>build</i></b> and <b><i>DB initialization</i></b></p>
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <h4>Build:</h4>
+        <p>
+          Building process include a several tasks that dedicated to generate additional java classes that provide an
+          access to database also during build process will be generated script for db initialization.
+        </p>
+
+        <p>To run build you need to perform simple Gradle <b><i>'build'</i></b> instruction in the project directory</p>
+
+        <h6>Example:</h6>
+
+        <div class="d-flex badge bg-light text-dark">./gradlew build</div>
+        <p>To clean up all generated Items, SQL scripts, etc. You need to perform 'clean' instruction</p>
+
+        <div class="d-flex badge bg-light text-dark">./gradlew clean</div>
+        <p>You also can combine this two instruction:</p>
+
+        <div class="d-flex badge bg-light text-dark">./gradlew clean build</div>
+
+        <div class="row mt-2">
+          <div class="col-12">
+            <h6>Commands:</h6>
+            <table class="table table-borderless table-hover table-dark">
+              <thead>
+              <tr>
+                <th scope="col">Command</th>
+                <th scope="col">Description</th>
+                <th scope="col">Example</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <th scope="row">clean</th>
+                <td>Used to remove generated java classes and sql scripts</td>
+                <td>./gradlew clean</td>
+              </tr>
+              <tr>
+                <th scope="row">generate</th>
+                <td>Used to generate java classes and sql script based on information collected from *.struct files</td>
+                <td>./gradlew generate</td>
+              </tr>
+              <tr>
+                <th scope="row">build</th>
+                <td>
+                  Start the build process and run <b><i>'generate'</i></b> command automatically before java compilation
+                  process.
+                  Also download required libs for each module and place it to 'libs' directory
+                </td>
+                <td>./gradlew build</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-md-6 col-sm-12">
+        <h4>DB initialization:</h4>
+        <p> Db initialization is the second part of build process dedicated to create database,
+          tables and essential information for ORM </p>
+
+        <h6>Example:</h6>
+        <div class="d-flex badge bg-light text-dark">./gradlew initialize</div>
+
+        <p>If database already initialized but data structure has been changed you need to perform data base update.
+          For this purposes exist <b><i>'updatesystem'</i></b> task</p>
+
+        <h6>Example:</h6>
+        <div class="d-flex badge bg-light text-dark">./gradlew updatesystem</div>
+
+        <div class="row mt-2">
+          <div class="col-12">
+            <h6>Commands:</h6>
+            <table class="table table-borderless table-hover table-dark">
+              <thead>
+              <tr>
+                <th scope="col">Command</th>
+                <th scope="col">Description</th>
+                <th scope="col">Example</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <th scope="row">initialize</th>
+                <td>
+                  Create database defined in <strong>coretex.properties</strong> if not exist.
+                  Create if not exist and execute sql initial script
+                </td>
+                <td>./gradlew initialize</td>
+              </tr>
+              <tr>
+                <th scope="row">updatesystem</th>
+                <td>
+                  Used to migrate initialized DB to new structure.
+                  Automatically create and execute sql commands that required to cover diff in table structure and meta
+                  data
+                </td>
+                <td>./gradlew updatesystem</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

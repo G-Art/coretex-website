@@ -1,0 +1,53 @@
+@import "variables";
+
+
+@mixin glass {
+  box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.4);
+  perspective: 500px;
+}
+
+@for $i from 1 through 9 {
+  $val: $i * 10;
+  $val_half: $val + 5;
+  .glass-#{$val} {
+    @include glass;
+    background-color: rgba(0, 0, 0, $val / 100);
+
+  }
+  .glass-#{$val_half} {
+    @include glass;
+    background-color: rgba(0, 0, 0, $val_half / 100);
+  }
+
+  .glass-border-#{$val} {
+    @each $side, $bcol in (top, $default-border-color-light),
+                          (bottom, $default-border-color-dark),
+                          (left, $default-border-color-light),
+                          (right, $default-border-color-dark) {
+      border-#{$side}: 1px solid transparentize($bcol, $val / 100);
+    }
+  }
+
+  @each $side, $bcol in (top, $default-border-color-light),
+                        (bottom, $default-border-color-dark),
+                        (left, $default-border-color-light),
+                        (right, $default-border-color-dark) {
+    .glass-border-#{$side}-#{$val} {
+      border-#{$side}: 1px solid transparentize($bcol, $val / 100);
+    }
+  }
+
+  @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    .glass-#{$val} {
+      -webkit-backdrop-filter: blur($default-blur);
+      backdrop-filter: blur($default-blur);
+      background-color: transparentize($default-glass-background-color, $val / 100);
+    }
+    .glass-#{$val_half} {
+      -webkit-backdrop-filter: blur($default-blur);
+      backdrop-filter: blur($default-blur);
+      background-color: transparentize($default-glass-background-color, $val_half / 100);
+    }
+  }
+}
+

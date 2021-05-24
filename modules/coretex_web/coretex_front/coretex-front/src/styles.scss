@@ -1,0 +1,143 @@
+@import "variables";
+
+@import "glass";
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: $default-font-family;
+  font-size: $default-font-size;
+  color: $default-font-color;
+
+  background: center / cover no-repeat url($default-background-image), radial-gradient(circle, $default-background-color-second 0%, $default-background-color 100%);
+  background-attachment: fixed !important;
+  background-position: center !important;
+
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid $default-border-color-dark;
+  margin: 1em 0;
+  padding: 0;
+}
+
+a {
+  color: $default-link-color !important;
+  background-color: transparent;
+
+  &:hover {
+    color: $default-link-color-hover !important;
+  }
+}
+
+.navbar-nav > .active > a {
+  color: $default-link-color-selected !important;
+  border-color: inherit !important;
+}
+
+a.active, .list-group-item.active {
+  color: $default-link-color-selected !important;
+  background-color: inherit !important;
+  border-color: inherit !important;
+}
+
+.centered {
+  text-align: center;
+}
+
+.flex-fill {
+  flex: 1;
+}
+
+.logo {
+  position: relative;
+  float: left;
+  width: 40px;
+  height: 40px;
+  -webkit-mask: url($default-logo-image) no-repeat left;
+  mask: url($default-logo-image) no-repeat left;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  background-size: 40px 40px;
+  background-color: $default-font-color;
+}
+
+a:hover .logo {
+  background-color: $default-link-color-hover;
+}
+
+
+.list-group-item {
+  background-color: inherit;
+  border: none;
+  color: inherit;
+
+  .active {
+    background-color: inherit;
+    border-color: inherit;
+  }
+  &:hover {
+    background-color: inherit !important;
+  }
+
+}
+
+.list-group-item-action {
+  color: inherit;
+}
+
+.btn-link {
+  color: $default-link-color;
+}
+.btn-link:hover {
+  color: $default-link-color-hover;
+}
+
+.card {
+  background-color: inherit;
+}
+
+.cart {
+  border-radius: 10px;
+}
+
+
+.info-cart {
+  @extend .cart;
+
+  font-size: 0.9rem;
+
+  &--header {
+    margin: 0 0 1.5rem 0;
+  }
+}
+
+.navbar {
+  font-weight: 800;
+  font-size: $navbar-font-size;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.navbar-toggler {
+  color: $default-link-color;
+}
+
+.table-dark {
+  background-color: inherit !important;
+}
+
+pre {
+  color: $default-link-color-hover;
+}
+
+
+

@@ -1,0 +1,161 @@
+<div class="row">
+  <div class="col-12">
+    <p>
+      After creating core module we need to create web module that will contain controller logic
+      and front-end related logic.<br/>
+      For this purposes CoreTex has an ability to generate web module that use Angular 11.<br/>
+      Next command will create web module that will be deployed automatically once system start.
+    </p>
+
+    <div class="badge bg-light text-dark mb-2 text-wrap">
+      ./gradlew moduleGen -Darchetype=web_angular_11_module -DprojectPath=/modules/todolist -DprojectName=todolistfront
+      -DmoduleName=todoListFront -DangularProjectName=todoListFront -DpackagePath=com/example/project -DwebContextPath=
+      --no-daemon
+    </div>
+
+    <p>Created module contains completely configured sample angular web project</p>
+
+    <p>Next step is creation DTO and controllers for ToDoNotes</p>
+
+    <div class="row">
+      <div class="col-xl-6 col-md-12">
+        <button type="button" class="btn btn-outline-light" (click)="toDoDtoExampleCollapsed = !toDoDtoExampleCollapsed"
+                [attr.aria-expanded]="!toDoDtoExampleCollapsed" aria-controls="dtoExample">Show ToDoNoteDto.java
+        </button>
+
+        <div id="dtoExample" [collapse]="toDoDtoExampleCollapsed" [isAnimated]="true">
+          <div class="border border-white rounded">
+            <span class="ml-1"><small>Code example:</small></span>
+            <pre>
+              <code [innerHTML]="toDoDtoExample"></code>
+            </pre>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-md-12">
+        <button type="button" class="btn btn-outline-light"
+                (click)="toDoListControllerExampleCollapsed = !toDoListControllerExampleCollapsed"
+                [attr.aria-expanded]="!toDoListControllerExampleCollapsed" aria-controls="controllerExample">Show
+          ToDoNotesController.java
+        </button>
+
+        <div id="controllerExample" [collapse]="toDoListControllerExampleCollapsed" [isAnimated]="true">
+          <div class="border border-white rounded">
+            <span class="ml-1"><small>Code example:</small></span>
+            <pre>
+              <code [innerHTML]="toDoListControllerExample"></code>
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-2">
+      After creation back-and part creation time to create front-and side.
+      This type of module used Angular 11 for UI development, so lets create component for ToDoList.
+      First of all we need to create <strong>todo-list</strong> component and data class <strong>todo-item</strong>
+      that represent todo list item.
+    </p>
+
+    <div class="row">
+      <div class="col-xl-6 col-md-12">
+        <button type="button" class="btn btn-outline-light"
+                (click)="toDoListComponentExampleCollapsed = !toDoListComponentExampleCollapsed"
+                [attr.aria-expanded]="!toDoListComponentExampleCollapsed"
+                aria-controls="listExample">Show todo-list component
+        </button>
+
+        <div id="todo-listExample" [collapse]="toDoListComponentExampleCollapsed" [isAnimated]="true">
+          <accordion [closeOthers]="true" [isAnimated]="true">
+            <accordion-group heading="todo-list.component.html">
+              <div class="border border-white rounded">
+                <span class="ml-1"><small>HTML:</small></span>
+                <pre>
+                <code [innerText]="toDoComponentHtmlExample"></code>
+              </pre>
+              </div>
+            </accordion-group>
+            <accordion-group heading="todo-list.component.scss">
+              <div class="border border-white rounded">
+                <span class="ml-1"><small>SCSS:</small></span>
+                <pre>
+                <code [innerHTML]="toDoComponentScssExample"></code>
+              </pre>
+              </div>
+            </accordion-group>
+            <accordion-group heading="todo-list.component.ts">
+              <div class="border border-white rounded">
+                <span class="ml-1"><small>TypeScript:</small></span>
+                <pre>
+              <code [innerHTML]="toDoComponentTsExample"></code>
+            </pre>
+              </div>
+            </accordion-group>
+          </accordion>
+
+        </div>
+      </div>
+      <div class="col-xl-6 col-md-12">
+        <button type="button" class="btn btn-outline-light"
+                (click)="toDoItemExampleCollapsed = !toDoItemExampleCollapsed"
+                [attr.aria-expanded]="!toDoItemExampleCollapsed" aria-controls="controllerExample1">Show
+          todo-item.ts
+        </button>
+
+        <div id="controllerExample1" [collapse]="toDoItemExampleCollapsed" [isAnimated]="true">
+          <div class="border border-white rounded">
+            <span class="ml-1"><small>Code example:</small></span>
+            <pre>
+              <code [innerHTML]="toDoItemTsExample"></code>
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-2">After component creation we should adjust <strong>app.module.ts</strong></p>
+
+    <div class="row">
+      <div class="col-12">
+        <button type="button" class="btn btn-outline-light"
+                (click)="appModuleTsExampleCollapsed = !appModuleTsExampleCollapsed"
+                [attr.aria-expanded]="!appModuleTsExampleCollapsed" aria-controls="moduleExample">Show
+          app.module.ts
+        </button>
+
+        <div id="moduleExample" [collapse]="appModuleTsExampleCollapsed" [isAnimated]="true">
+          <div class="border border-white rounded">
+            <span class="ml-1"><small>Code example:</small></span>
+            <pre>
+              <code [innerHTML]="appModuleTsExample"></code>
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-2">
+      And finally add tag <strong>&lt;app-todo-list>&lt;/app-todo-list></strong> to
+      <strong>home-page.component.html</strong>
+      <br/>
+      Once everything is done we just need to initialize and run platform to see the result,
+      to do this just perform this commands:
+    </p>
+    <div class="d-flex badge bg-light text-dark mb-2 text-wrap">
+      ./gradlew clean build --no-daemon
+    </div>
+    <div class="d-flex badge bg-light text-dark mb-2 text-wrap">
+      ./gradlew initialize --no-daemon
+    </div>
+    <div class="d-flex badge bg-light text-dark mb-2 text-wrap">
+      ./gradlew run --no-daemon
+    </div>
+
+    <p class="mt-2">
+      Finally we can see the result and verify if it works properly
+      <br/>
+      For local environment URL is: <a target="_blank" href="http://localhost:8008/">http://localhost:8008/</a>
+
+    </p>
+  </div>
+</div>

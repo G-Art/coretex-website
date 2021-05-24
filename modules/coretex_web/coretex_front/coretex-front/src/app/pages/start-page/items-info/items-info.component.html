@@ -1,0 +1,200 @@
+<div class="row">
+  <div class="col-12">
+    <p>
+      <strong>.struct</strong> files contain a script that allows describing
+      Java items, database table structure and relations.
+      Struct file contain three elements: <i>relations</i>, <i>items</i>, <i>enums</i>
+    </p>
+    <p>
+      <strong>relations</strong> - contain definition for principal relation between items and represent DB table
+      relation as
+      <i>one-to-one, one-to-many and many-to-many</i>. <br/>
+      Relations used for declaring bidirectional relation.
+    </p>
+    <p>
+      <strong>items</strong> - contain definition for item that represent object-relational mapping and
+      allow system generate java class and DB structure as table and metadata
+    </p>
+    <p>
+      <strong>enums</strong> - contain definition for enums that represent enums class and allow to use it as type for
+      DB table column
+    </p>
+    <div class="border border-white rounded">
+      <span class="ml-1"><small>Code example:</small></span>
+      <pre>
+        <code [innerHTML]="structExample"></code>
+      </pre>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-12">
+        <tabset [justified]="true">
+          <tab heading="Relations">
+            <div class="row mt-2">
+              <div class="col-12">
+                <div class="row mt-2">
+                  <div class="col-sm-12 col-md-6">
+                    <div class="border border-white rounded">
+                      <span class="ml-1"><small>Code example:</small></span>
+                      <pre>
+                        <code [innerHTML]="structRelationExample"></code>
+                      </pre>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                    <h4>Relations declaration</h4>
+                    <p>
+                      There are two ways to create a relation between items:
+                    </p>
+                    <ol>
+                      <li>
+                        One direction, is just create a field with a type of another item example: (<strong>firstExampleOneDirection</strong>(FirstExample))
+                      </li>
+                      <li>
+                        Define the relation in the relations section. This approach has a few advantages.
+                      </li>
+                    </ol>
+                    <ul>
+                      <li>Allows creating bidirectional relation.</li>
+                      <li>Allows crete <strong>1 <=> many</strong> relation</li>
+                      <li>Allows crete <strong>many <=> many</strong> relation</li>
+                    </ul>
+
+                    <p>Declaration for new relation contains the next parts:</p>
+                    <ul>
+                      <li>Relation name example: (<strong>ManyToManyBidirectionalRelation</strong>)</li>
+                      <li>
+                        Source and tasget type declaration example: (<strong>source: FirstExample, target:
+                        SecondExample</strong>).<br/>
+                        Attributes source and target is mandatory
+                      </li>
+                      <li>
+                        Declaration <strong>source(mtmSecondExampleMany)</strong> in relation body means that for source
+                        type
+                        (FirstExample)
+                        will be created field with name <i><strong>mtmSecondExampleMany</strong></i> and type defined to
+                        target.
+                      </li>
+                      <li>
+                        Optional attributes for source and target declaration is <i>"containerType", "associated"</i>.
+                      </li>
+                    </ul>
+
+                    <table class="table table-borderless table-hover table-dark">
+                      <thead>
+                      <tr>
+                        <th scope="col">Parameter</th>
+                        <th scope="col">Value</th>
+                        <th scope="col">Description</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                        <th scope="row">containerType</th>
+                        <td>Set or List</td>
+                        <td>(Optional) Used for many items relation and specify that collection type will use for this
+                          field
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">associated</th>
+                        <td>true or false</td>
+                        <td>(Optional) All items related to this field will be removed once remove owner.
+                          default: false
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </tab>
+          <tab heading="Items" [active]="true">
+            <div class="row mt-2">
+              <div class="col-12">
+                <div class="row mt-2">
+                  <div class="col-sm-12 col-md-6">
+                    <div class="border border-white rounded">
+                      <span class="ml-1"><small>Code example:</small></span>
+                      <pre>
+                        <code [innerHTML]="structItemExample"></code>
+                      </pre>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                    <h4>Item declaration</h4>
+                    <p>Item is a declaration of a Java class that represents a table with relations as a java object</p>
+                    <p>Item has the following parameters:</p>
+
+                    <table class="table table-borderless table-hover table-dark">
+                      <thead>
+                      <tr>
+                        <th scope="col">Parameter</th>
+                        <th scope="col">Value</th>
+                        <th scope="col">Description</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                        <th scope="row">extend</th>
+                        <td>(Declared item name)</td>
+                        <td>(Optional) Using to extend existing type same as java extends.
+                          By default extends Generic item declared in core module
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">table</th>
+                        <td>true or false</td>
+                        <td>(Optional) By default "true" if true type will get dedicated table,
+                          if "false" all specified fields will store in closest parent item with dedicated table.
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">abstract</th>
+                        <td>true or false</td>
+                        <td>(Optional) By default "false" affect only java class and make item abstract
+                          if it's required.
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">enhance</th>
+                        <td>module name</td>
+                        <td>(Optional) Used to add additional attributes to already exist Item example: (enhance: 'core')
+                          just need to define module name that declares desired item.
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </tab>
+          <tab heading="Enums">
+            <div class="row mt-2">
+              <div class="col-12">
+                <div class="row mt-2">
+                  <div class="col-sm-12 col-md-6">
+                    <div class="border border-white rounded">
+                      <span class="ml-1"><small>Code example:</small></span>
+                      <pre>
+                        <code [innerHTML]="structEnumExample"></code>
+                      </pre>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                    <h4>Enum declaration</h4>
+                    <p>Enum segment dedicated to declaring Enums</p>
+                    Enums might be used as a type for Item attribute.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>
+
