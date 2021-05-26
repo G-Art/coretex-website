@@ -4,7 +4,6 @@
   min-height: 0;
   margin: 10px auto;
 }
-
 .mdl-card__supporting-text {
   width: 100%;
   padding: 0;
@@ -12,11 +11,8 @@
 
 .mdl-stepper-horizontal-alternative .mdl-stepper-step {
   width: 25%;
-  /* 100 / no_of_steps */
 }
 
-
-/* Begin actual mdl-stepper css styles */
 
 .mdl-stepper-horizontal-alternative {
   display: table;

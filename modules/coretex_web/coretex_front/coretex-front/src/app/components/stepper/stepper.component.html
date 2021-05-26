@@ -18,7 +18,7 @@
   </div>
 
 </div>
-<div class="row">
+<div class="row" *ngIf="selected">
   <div class="col-12">
     <h6>{{selected.label}}</h6>
     <ng-container [ngTemplateOutlet]="selected.content"> </ng-container>

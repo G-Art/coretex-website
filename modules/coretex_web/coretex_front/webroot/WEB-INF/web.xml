@@ -5,7 +5,7 @@
          http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
   <absolute-ordering />
 
-  <display-name>/cweb</display-name>
+  <display-name>/</display-name>
 
   <!--
    We have to explicitly clear the welcome file list.

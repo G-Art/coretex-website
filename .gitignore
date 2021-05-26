@@ -21,3 +21,11 @@ velocity.log
 **/webroot/resources/static/
 !/config/solr/
 !**/solrserver/resources/**
+/core/
+/gradle/
+/gradle-build/
+/modules/mc/
+/gradle.properties
+/gradlew
+/gradlew.bat
+/settings.gradle
