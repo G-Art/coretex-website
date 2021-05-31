@@ -14,7 +14,7 @@ const routes: Routes = [
         path: '',
         pathMatch: 'full',
         component: HomePageComponent,
-        data: {title: 'CoreTex home'}
+        data: {title: 'CoreTex Web Platform'}
       },
       {
         path: 'about',

@@ -32,8 +32,10 @@ hr {
 a {
   color: $default-link-color !important;
   background-color: transparent;
-
-  &:hover {
+  &.btn-outline-light:hover{
+    color: black !important;
+  }
+  &.nav-link:hover {
     color: $default-link-color-hover !important;
   }
 }
